@@ -1,7 +1,11 @@
 <template>
-    <h class="text-3xl text-red-300">hello world</h>
+    <button @click="add"> click {{ count }}</button>
 </template>
 
-<script>
-    
+<script setup>
+    import {ref} from 'vue'
+    const count =ref(0)
+    function add(){
+        count.value++
+    }
 </script>
