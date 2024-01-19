@@ -1,7 +1,4 @@
-<template>
-  <HelloWorld/>
-  <HelloWorld/>
-  <HelloWorld/>
+<template v-for="it in a">
   <HelloWorld/>
   <p :class="Pclass">
     {{ msg }}
@@ -24,6 +21,7 @@
     class: 'p1',
     id: 'id1'
   })
+  const a=ref(['1','2','3','4'])
   const isClick = ref(false)
   const Pclass =ref('p1')
   const Pid =ref('id1')
