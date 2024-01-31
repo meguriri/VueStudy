@@ -12,6 +12,7 @@
   <button :disabled="isClick">
     click
   </button>
+  <p>{{ test.name }}</p>
 </template>
 
 <script setup>
@@ -26,7 +27,10 @@
   const Pclass =ref('p1')
   const Pid =ref('id1')
   const msg = ref('vue is so difficult')
-  
+  const test =ref({
+    name:'haha',
+    age:20,
+  })
 </script>
 
 <style>
