@@ -39,6 +39,29 @@ def getPathData():
     }
 
 
+@app.route("/data/pie")
+def getPieData():
+    l =10
+    r= 17
+    n1=round(random.uniform(l,r),2)
+    n2=round(random.uniform(l,r),2)
+    n3=round(random.uniform(l,r),2)
+    n4=round(random.uniform(l,r),2)
+    n5=round(random.uniform(l,r),2)
+    n6=round((100-n5-n4-n3-n2-n1),2)
+    data = [
+        {"name": "aaa", "value": n1},
+        {"name": "bbb", "value": n2},
+        {"name": "ccc", "value": n3},
+        {"name": "ddd", "value": n4},
+        {"name": "eee", "value": n5},
+        {"name": "fff", "value": n6},
+    ]
+    return {
+        "msg": 200,
+        "data": data,
+    }
+
 
 if __name__ == "__main__":
     app.run(host="localhost", port=5002)

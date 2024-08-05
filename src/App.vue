@@ -4,7 +4,8 @@
     <div class="p-5"></div>
     <!-- <container :idx="i" v-for="i in 10"></container> -->
     <!-- <bar></bar> -->
-    <pathh></pathh>
+    <!-- <pathh></pathh> -->
+    <pie></pie>
   </main>
 </template>
 
@@ -14,6 +15,7 @@
   import navibar  from '@/components/navibar.vue'
   import pathh from '@/components/canvas/path.vue'
   import bar from '@/components/canvas/bar.vue'
+  import pie from '@/components/canvas/pie.vue'
 </script>
 
 <style>
