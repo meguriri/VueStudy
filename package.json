@@ -1,5 +1,5 @@
 {
-  "name": "study",
+  "name": "d3study",
   "version": "0.0.0",
   "private": true,
   "type": "module",
@@ -9,13 +9,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "axios": "^1.6.7",
-    "element-plus": "^2.7.1",
-    "vue": "^3.3.11",
-    "vue-router": "^4.3.2"
+    "axios": "^1.7.2",
+    "bootstrap": "^5.3.0-alpha1",
+    "d3": "^7.9.0",
+    "pinia": "^2.1.7",
+    "pinia-plugin-persistedstate": "^3.2.1",
+    "vue": "^3.4.29"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^4.5.2",
-    "vite": "^5.0.10"
+    "@vitejs/plugin-vue": "^5.0.5",
+    "vfonts": "^0.0.3",
+    "vite": "^5.3.1"
   }
 }
