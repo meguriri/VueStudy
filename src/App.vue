@@ -1,16 +1,12 @@
 <template>
   <main>
     <navibar></navibar>
-    <div class="p-5"></div>
-    <!-- <container :idx="i" v-for="i in 10"></container> -->
-    <!-- <bar></bar> -->
-    <!-- <pathh></pathh> -->
-    <pie></pie>
+    <div class="pt-4 pb-5"></div>
+     <container></container>
   </main>
 </template>
 
 <script setup>
-  // import axiosTest from './components/axiosTest.vue';
   import container from '@/components/container.vue'
   import navibar  from '@/components/navibar.vue'
   import pathh from '@/components/canvas/path.vue'
@@ -20,6 +16,7 @@
 
 <style>
   main{
-    background-color: aliceblue;
+    background-color: rgb(255, 255, 255);
+    font-family: "Roboto", sans-serif;
   }
 </style>
