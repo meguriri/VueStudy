@@ -9,10 +9,10 @@ CORS(app, origins="http://localhost:5173")
 @app.route("/data/bar")
 def getBarData():
     data = []
-    size = random.randint(6, 12)
+    size = 8
     for i in range(size):
         num = random.randint(10, 80)
-        name = random.randint(97, 122)
+        name = 97+i
         data.append({'name': chr(name), 'value': num})
     return {
         "msg": 200,

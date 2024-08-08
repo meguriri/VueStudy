@@ -1,11 +1,15 @@
 <template>
-    <svg></svg>
+    <div class="row">
+        <div class="col-auto offset-4">
+            <svg></svg>
+        </div>
+    </div>
 </template>
 
 <script setup>
     import * as d3 from 'd3'
     import { barInit, barUpdate } from './utils/bar';
-    import {watch, onMounted,ref } from 'vue'
+    import {watch,ref } from 'vue'
     import axios from 'axios';
     const data =ref([])
     let isStart=0

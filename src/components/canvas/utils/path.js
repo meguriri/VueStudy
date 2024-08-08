@@ -1,7 +1,8 @@
 import * as d3 from 'd3'
+import { h } from 'vue'
 
-const width=800
-const height=600
+const width=600
+const height=400
 const margin = {top:60,right:30,bottom:60,left:50}
 const innerWidth = width- margin.left- margin.right
 const innerHeight = height-margin.top-margin.bottom
@@ -12,12 +13,16 @@ let yValue = d=>d.value
 let Xscale
 let Yscale
 
+let maingroup
+
+let path
+let circle
+
 function pathInit(svg,data){
-    console.log(data)
     
-    svg.attr('height',height.toString())
-    .attr('width',width.toString())
-    .style('background','#FFF5FC')
+    svg.attr('height',height)
+    .attr('width',width)
+    .style('background','#F7F7F7')
 
     Xscale = d3.scaleTime()
     .domain(d3.extent(data,xValue))
@@ -27,7 +32,7 @@ function pathInit(svg,data){
     .domain([0,d3.max(data,yValue)+10].reverse())
     .range([0,innerHeight]).nice()
 
-    const maingroup = svg.append('g')
+    maingroup = svg.append('g')
     .attr('id','maingroup')
     .attr('transform', `translate(${margin.left},${margin.top})`)
 
@@ -48,16 +53,22 @@ function pathInit(svg,data){
     .x(d=>Xscale(xValue(d)))//
     .y(d=>Yscale(yValue(d)))//
 
-    maingroup.append('g').attr('class','path').append('path')
+    // maingroup.append('g').attr('class','path').append('path')
+    // .attr('class', 'line-path')
+    // .attr('d', linePath(data))
+    // .attr('fill', 'none')
+    // .attr('stroke-width', 2)
+    // .attr('stroke', '#ff94cf')
+    
+    path = maingroup.append('g').attr('class','path').append('path')
     .attr('class', 'line-path')
     .attr('d', linePath(data))
     .attr('fill', 'none')
     .attr('stroke-width', 2)
     .attr('stroke', '#ff94cf')
-    .transition().duration(1000)
 
     //画点
-    maingroup.append('g').attr('class','circleG').selectAll('circle')
+    circle=maingroup.append('g').attr('class','circleG').selectAll('circle')
     .data(data)
     .enter()
     .append('circle')
@@ -67,7 +78,6 @@ function pathInit(svg,data){
         ,${Yscale(yValue(d))})`
     })
     .attr('fill','#ff1c99')
-    .transition().duration(1000)
 
     //添加标题
     maingroup.append('text').text('LineChart demo1')
@@ -82,8 +92,8 @@ function pathUpdate(data){
         .x(d=>Xscale(xValue(d)))//
         .y(d=>Yscale(yValue(d)))//
     
-        d3.select('#maingroup').selectAll('path')
-        .attr('class', 'line-path')
+        path.attr('class', 'line-path')
+        .transition().duration(1000)
         .attr('d', linePath(data))
         .attr('fill', 'none')
         .attr('stroke-width', 2)
@@ -91,8 +101,8 @@ function pathUpdate(data){
         .transition().duration(1000)
     
         //画点
-        d3.select('#maingroup').selectAll('circle')
-        .data(data)
+        circle.data(data)
+        .transition().duration(1000)
         .attr('r','5')
         .attr('transform',d=>{
             return `translate(${Xscale(xValue(d))}

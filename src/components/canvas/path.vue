@@ -1,6 +1,12 @@
 <template>
-    <svg class="ms-5"></svg>
-    <h5 v-for="d in data">{{ d.date }}, {{ d.value}}</h5>
+    <div class="row">
+        <div class="col-auto offset-4">
+            <svg></svg>
+        </div>
+    </div>
+    <div class="row mt-4" style="text-align: center;">
+        <h5 v-for="d in data">{{ d.date }}, {{ d.value}}</h5>
+    </div>
 </template>
 
 <script setup>

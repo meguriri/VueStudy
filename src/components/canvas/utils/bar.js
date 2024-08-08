@@ -1,22 +1,31 @@
 import * as d3 from 'd3'
 
-let width
+let width 
 let height
 let innerWidth
 let innerHeight
 const margin = {top:60,right:30,bottom:60,left:50}
+
 let Xscale
 let Yscale
+let yAxis 
+let xAxis 
+
+let g
+let bars
+
+let colors = d3.scaleOrdinal(d3.schemePastel1)
 
 function barInit(svg,data){
     //设置画布
     svg.attr('height',400)
     .attr('width',400)
-    .style('background','#FFAAFF')
+    .style('background','#F7F7F7')
 
     //定义外边距
     width = +svg.attr('width')//+号是字符串隐式转换成数字
     height = +svg.attr('height')
+
     //定义maingroup大小
     innerWidth = width- margin.left- margin.right
     innerHeight = height-margin.top-margin.bottom
@@ -33,12 +42,12 @@ function barInit(svg,data){
     .range([innerHeight,0])
 
     //定义容器g(mainGroup),并将g偏移到maingroup的位置
-    const g = svg.append('g').attr('id','maingroup')
+    g = svg.append('g').attr('id','maingroup')
     .attr('transform',`translate(${margin.left},${margin.top})`)
     
     //添加坐标轴
-    const yAxis = d3.axisLeft(Yscale)
-    const xAxis = d3.axisBottom(Xscale)
+    yAxis = d3.axisLeft(Yscale)
+    xAxis = d3.axisBottom(Xscale)
 
     //渲染坐标轴
     g.append('g').attr('id','yAxis').call(yAxis)
@@ -46,11 +55,12 @@ function barInit(svg,data){
     .attr('transform',`translate(0,${innerHeight})`)
 
     //渲染柱状图
-    g.selectAll('.dataRect').data(data).enter()
+    bars = g.selectAll('.dataRect').data(data)
+    .enter()
     .append('rect')
     .attr('width',Xscale.bandwidth())
     .attr('height',d=>innerHeight-Yscale(d.value))
-    .attr('fill','#FFCFFF')
+    .attr('fill',d=>colors(d.name))
     .attr('x',d=>Xscale(d.name))
     .attr('y',d=>Yscale(d.value))
 
@@ -66,14 +76,16 @@ function barInit(svg,data){
 }
 
 function barUpdate(svg,data){
-    d3.select('#maingroup').selectAll('rect').data(data,d=>d.name)
-    .transition().duration(1000)
+    
+    bars.data(data,d=>d.name).transition().duration(1000)
     .attr('width',Xscale.bandwidth())
     .attr('height',d=>innerHeight-Yscale(d.value))
-    .attr('fill','#FFCFFF')
+    .attr('fill',d=>colors(d.name))
     .attr('x',d=>Xscale(d.name))
     .attr('y',d=>Yscale(d.value))
     .transition().duration(1000)
+
+    bars.exit().remove()
 }
 
 export { barInit,barUpdate }
