@@ -4,7 +4,7 @@
 </template>
 
 <script setup>
-  import {ref, watch} from 'vue'
+  import {ref, watch,onBeforeUnmount} from 'vue'
   import axios  from 'axios';
   import * as d3 from 'd3'
   import { pieInit ,pieUpdate} from './utils/pie'
@@ -22,7 +22,7 @@
         })
     }
     getD()
-    setInterval(getD,5000)
+    const timer=setInterval(getD,5000)
     watch(data,(newD)=>{
         let svg = d3.select('svg') 
         if(isStart==0){
@@ -33,5 +33,9 @@
             console.log('update')
             pieUpdate(newD)
         }
+    })
+    onBeforeUnmount(()=>{
+        console.log('components is UnMount')
+        clearInterval(timer)
     })
 </script>

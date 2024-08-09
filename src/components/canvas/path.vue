@@ -10,7 +10,7 @@
 </template>
 
 <script setup>
-    import {ref, watch} from 'vue'
+    import {ref, watch,onBeforeUnmount} from 'vue'
     import axios  from 'axios';
     import * as d3 from 'd3'
     import { pathInit ,pathUpdate} from './utils/path'
@@ -28,7 +28,8 @@
         })
     }
     getD()
-    setInterval(getD,5000)
+    const timer=setInterval(getD,5000)
+    
     watch(data,(newD)=>{
         let svg = d3.select('svg') 
         if(isStart==0){
@@ -39,5 +40,9 @@
             console.log('update')
             pathUpdate(newD)
         }
+    })
+    onBeforeUnmount(()=>{
+        console.log('components is UnMount')
+        clearInterval(timer)
     })
 </script>

@@ -9,7 +9,7 @@
 <script setup>
     import * as d3 from 'd3'
     import { barInit, barUpdate } from './utils/bar';
-    import {watch,ref } from 'vue'
+    import {watch,ref, onBeforeUnmount } from 'vue'
     import axios from 'axios';
     const data =ref([])
     let isStart=0
@@ -21,7 +21,7 @@
         })
     }
     getD()
-    setInterval(getD,5000)
+    const timer=setInterval(getD,5000)
     watch(data,(newD)=>{
         console.log('data is change!')
         let svg=d3.select('svg')
@@ -33,5 +33,9 @@
             console.log('update')
             barUpdate(svg,newD)
         }
+    })
+    onBeforeUnmount(()=>{
+        console.log('components is UnMount')
+        clearInterval(timer)
     })
 </script>

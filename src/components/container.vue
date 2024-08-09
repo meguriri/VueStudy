@@ -21,4 +21,6 @@
     import InstanceView from './cards/InstanceView.vue';
     import { defineProps } from 'vue';
     defineProps(['idx'])
+
+    
 </script>

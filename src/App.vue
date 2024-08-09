@@ -2,24 +2,27 @@
   <main>
     <navibar></navibar>
     <div class="pt-4 pb-5"></div>
-     <!-- <container></container>
-     <run-model></run-model> -->
-     <!-- <scatterPlot></scatterPlot> -->
-     <!-- <force></force> -->
-     <!-- <bar></bar> -->
-      <pathh></pathh>
+    <div class="mt-4 row px-2">
+      <button v-for="name in pathName"
+       @click="routerFor(name)" 
+       type="button" 
+       class="border mx-3 col-auto btn btn-light btn-sm">
+        {{ name }}
+      </button>
+    </div>
+    <RouterView/>
   </main>
 </template>
 
 <script setup>
-  import container from '@/components/container.vue'
   import navibar  from '@/components/navibar.vue'
-  import force from './components/canvas/force.vue'
-  import scatterPlot from './components/canvas/scatterPlot.vue'
-  import runModel from './components/runModel.vue'
-  import pathh from '@/components/canvas/path.vue'
-  import bar from '@/components/canvas/bar.vue'
-  import pie from '@/components/canvas/pie.vue'
+  
+  import { useRouter } from 'vue-router'
+  const router = useRouter()
+  const pathName = ['bar','path','pie','scatter','force']
+  function routerFor(chartType){
+    router.push(`/chart/${chartType}`)
+  }
 </script>
 
 <style>
