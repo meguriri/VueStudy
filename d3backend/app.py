@@ -1,10 +1,21 @@
-from flask import Flask
+from flask import Flask,render_template,redirect, url_for
+
 from flask_cors import CORS, cross_origin
 import random
 
-app = Flask(__name__)
-CORS(app, origins="http://localhost:5173")
+app = Flask(__name__,static_url_path='/assets',
+            static_folder='./dist/assets/',
+            template_folder='./dist')
+# CORS(app, origins="http://localhost:5173")
 
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+@app.route('/', defaults={'path': ''})
+@app.route('/<path:path>')
+def catch_all(path):
+    return render_template("index.html")
 
 @app.route("/data/bar")
 def getBarData():
