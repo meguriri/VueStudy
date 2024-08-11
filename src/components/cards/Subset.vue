@@ -10,16 +10,30 @@
                 </div>
             </div>
         </div>
-        <div class="card-body">
+        <div class="card-body overflow-auto">
             <p><b>subset test</b></p>
+            <!-- test -->
+            <div class="row" id="chart">
+                <div class="col-6 overflow-auto"> 
+                    <pie></pie>
+                </div>
+                <div class="col-6 overflow-auto"> 
+                    <scatter></scatter>
+                </div>
+            </div>
+            <!--  -->
         </div>
     </div>
 </template>
 
 <script setup>
+    import pie from '../canvas/pie.vue'
+    import scatter from '../canvas/scatter.vue'
     import selectNum from '../select/selectNum.vue'
 </script>
 
 <style>
-
+    #chart{
+        overflow-x: scroll;
+    }
 </style>

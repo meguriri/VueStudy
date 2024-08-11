@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 
-const width=800
-const height=600
+const width=400
+const height=400
 const margin = {top:60,right:30,bottom:60,left:50}
 const innerWidth = width- margin.left- margin.right
 const innerHeight = height-margin.top-margin.bottom
@@ -28,7 +28,7 @@ let arcs
 export function pieInit(svg,data){
   svg.attr('height',height.toString())
     .attr('width',width.toString())
-    .style('background','#FFF5FC')
+    .style('background','#F7F7F7')
   
   const maingroup = svg.append('g')
   .attr('id','maingroup')
@@ -58,6 +58,7 @@ export function pieInit(svg,data){
     return 'translate(' + x + ', ' + y + ')'
   })
   .attr('text-anchor','middle')
+  .attr('font-size','10px')
   .text(d=>d.data.name+" "+d.value+"%")
 
   //加上线

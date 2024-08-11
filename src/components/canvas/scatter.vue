@@ -46,8 +46,8 @@
   }
   
   const createChart = () => {
-    const margin = { top: 20, right: 30, bottom: 40, left: 150 };
-    const width = 600 - margin.left - margin.right;
+    const margin = { top: 20, right: 30, bottom: 40, left: 30 };
+    const width = 400 - margin.left - margin.right;
     const height = 400 - margin.top - margin.bottom;
   
     svg = d3.select(chart.value)
@@ -61,8 +61,8 @@
     y = d3.scaleLinear().range([height, 0]);
     color = d3.scaleOrdinal()
       .domain(categories)
-      .range(d3.schemeCategory10);
-  
+      .range(d3.schemePastel1);
+      
     xAxis = svg.append('g')
       .attr('class', 'x-axis')
       .attr('transform', `translate(0,${height})`);

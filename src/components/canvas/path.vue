@@ -1,48 +1,45 @@
 <template>
-    <div class="row">
-        <div class="col-auto offset-4">
-            <svg></svg>
-        </div>
-    </div>
-    <div class="row mt-4" style="text-align: center;">
-        <h5 v-for="d in data">{{ d.date }}, {{ d.value}}</h5>
+    <svg id="pathSvg" class="ms-2" ></svg>
+    <div class="row mt-4" style="text-align: center;font-size: 10px;">
+        <p v-for="d in data">{{ d.date }}, {{ d.value}}</p>
     </div>
 </template>
 
 <script setup>
-    import {ref, watch,onBeforeUnmount} from 'vue'
-    import axios  from 'axios';
+    import {ref, watch,onBeforeUnmount, onMounted} from 'vue'
     import * as d3 from 'd3'
     import { pathInit ,pathUpdate} from './utils/path'
-    let isStart=0
+    import { getPathData } from '@/api/api';
+    
     const data = ref([])
-    function getD(){
-        console.log('getD start..')
-        axios.get('http://127.0.0.1:5002/data/path')
-        .then(res=>{
-            data.value=res.data.data
-            data.value.forEach(d=>{
-                d.date=new Date(d.date)
-            })
-            console.log(data.value)
+    const intervalTime = 5000
+    let svg = null 
+    let timer = null
+
+    async function fechData(){
+        const res = await getPathData()
+        data.value=res.data.data
+        data.value.forEach(d=>{
+            d.date=new Date(d.date)
         })
     }
-    getD()
-    const timer=setInterval(getD,5000)
     
     watch(data,(newD)=>{
-        let svg = d3.select('svg') 
-        if(isStart==0){
-            console.log('init')
-            pathInit(svg,newD)
-            isStart=1
-        }else{
-            console.log('update')
+        if(svg){
             pathUpdate(newD)
         }
     })
+
+    onMounted(async ()=>{
+        await fechData()
+        if (!svg){
+            svg = d3.select('#pathSvg')
+            pathInit(svg,data.value)
+        }
+        timer = setInterval(fechData,intervalTime)
+    })
+
     onBeforeUnmount(()=>{
-        console.log('components is UnMount')
         clearInterval(timer)
     })
 </script>

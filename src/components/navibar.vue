@@ -7,7 +7,7 @@
             <a href="#" class="text-white">what is CommonsenseVIS?</a>
         </div>
         <div class="col-3 offset-3 px-0 me-0" style="float: right;">
-            <button type="button" class="btn btn-light text-secondary mx-1">
+            <button @click="back" type="button" class="btn btn-light text-secondary mx-1">
                 <span>
                     <i class="bi bi-check-circle"></i>
                     Filter Stop Words
@@ -46,7 +46,11 @@
 </template>
 
 <script setup>
-    
+    import {useRouter} from 'vue-router'
+    const router = useRouter()
+    function back(){
+        router.push('/')
+    }
 </script>
 
 <style scoped>

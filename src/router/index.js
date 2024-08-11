@@ -20,4 +20,10 @@ const router =createRouter({
     routes,
 })
 
+//路由守卫
+router.beforeEach((to,from)=>{
+    console.log("from: ",from)
+    console.log("to: ",to)
+})
+
 export default router

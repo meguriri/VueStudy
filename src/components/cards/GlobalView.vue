@@ -31,13 +31,26 @@
             </div>
            
         </div>
-        <div class="card-body">
+        <div class="card-body overflow-auto">
             <p><b>globarView test</b></p>
+            <!-- test -->
+            <div class="row" id="chart">
+                <div class="col-6 overflow-auto"> 
+                    <bar></bar>
+                </div>
+                <div class="col-6 overflow-auto"> 
+                    <pathh></pathh>
+                </div>
+            </div>
+            <!--  -->
         </div>
     </div>
 </template>
 
 <script setup>
+    import bar from '../canvas/bar.vue';
+    import pathh from '../canvas/path.vue';
+
     import selectMini from '../select/selectMini.vue'
     import {reactive} from 'vue'
     const select1= reactive({
@@ -63,5 +76,7 @@
 </script>
 
 <style>
-
+    #chart{
+        overflow-x: scroll;
+    }
 </style>

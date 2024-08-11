@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 import { h } from 'vue'
 
-const width=600
+const width=400
 const height=400
 const margin = {top:60,right:30,bottom:60,left:50}
 const innerWidth = width- margin.left- margin.right
@@ -53,12 +53,6 @@ function pathInit(svg,data){
     .x(d=>Xscale(xValue(d)))//
     .y(d=>Yscale(yValue(d)))//
 
-    // maingroup.append('g').attr('class','path').append('path')
-    // .attr('class', 'line-path')
-    // .attr('d', linePath(data))
-    // .attr('fill', 'none')
-    // .attr('stroke-width', 2)
-    // .attr('stroke', '#ff94cf')
     
     path = maingroup.append('g').attr('class','path').append('path')
     .attr('class', 'line-path')

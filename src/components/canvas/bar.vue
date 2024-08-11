@@ -1,41 +1,42 @@
 <template>
-    <div class="row">
-        <div class="col-auto offset-4">
-            <svg></svg>
-        </div>
+    <svg id="barSvg" class="ms-2"></svg>
+    <div class="row mt-4" style="text-align: center;font-size: 10px;">
+        <p v-for="d in data">name: {{ d.name }},value: {{ d.value }}  </p>
     </div>
 </template>
 
 <script setup>
     import * as d3 from 'd3'
-    import { barInit, barUpdate } from './utils/bar';
-    import {watch,ref, onBeforeUnmount } from 'vue'
-    import axios from 'axios';
+    import { barInit, barUpdate } from './utils/bar'
+    import {watch,ref, onBeforeUnmount, onMounted } from 'vue'
+    import { getBarData } from '@/api/api'
+
     const data =ref([])
-    let isStart=0
-    function getD(){
-        console.log('getD start..')
-        axios.get('http://127.0.0.1:5002/data/bar')
-        .then(res=>{
-            data.value=res.data.data
-        })
+    const intervalTime = 5000
+    let svg = null
+    let timer = null
+
+    async function fetchData(){
+        const res = await getBarData()
+        data.value=res.data.data
     }
-    getD()
-    const timer=setInterval(getD,5000)
+    
     watch(data,(newD)=>{
-        console.log('data is change!')
-        let svg=d3.select('svg')
-        if(isStart==0){
-            console.log('init')
-            barInit(svg,newD)
-            isStart=1
-        }else{
-            console.log('update')
-            barUpdate(svg,newD)
+        if(svg){
+            barUpdate(newD)
         }
     })
+
+    onMounted(async ()=>{
+        await fetchData()
+        if (!svg){
+            svg = d3.select('#barSvg')
+            barInit(svg,data.value)
+        }
+        timer = setInterval(fetchData,intervalTime) 
+    })
+    
     onBeforeUnmount(()=>{
-        console.log('components is UnMount')
         clearInterval(timer)
     })
 </script>

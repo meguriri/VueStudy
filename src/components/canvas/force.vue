@@ -39,7 +39,7 @@
       .attr('width', width)
       .attr('height', height);
   
-    const color = d3.scaleOrdinal(d3.schemeCategory10);
+    const color = d3.scaleOrdinal(d3.schemePastel1);
   
     const simulation = d3.forceSimulation(data.nodes)
       .force('link', d3.forceLink(data.links).id(d => d.id).distance(150))

@@ -75,7 +75,7 @@ function barInit(svg,data){
     .transition().duration(1000)
 }
 
-function barUpdate(svg,data){
+function barUpdate(data){
     
     bars.data(data,d=>d.name).transition().duration(1000)
     .attr('width',Xscale.bandwidth())
