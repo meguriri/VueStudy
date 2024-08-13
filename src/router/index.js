@@ -1,3 +1,4 @@
+import Chart from "@/components/chart.vue"
 import { createRouter,createWebHistory } from "vue-router"
 
 const routes = [
@@ -11,6 +12,13 @@ const routes = [
             {path:'pie',component:()=>import('@/components/canvas/pie.vue')},
             {path:'scatter',component:()=>import('@/components/canvas/scatter.vue')},
             {path:'force',component:()=>import('@/components/canvas/force.vue')},
+        ]
+    },
+    {
+        path:'/complex', 
+        component:()=>import('@/components/chart.vue'),
+        children:[
+            {path:'path/:choose1/:choose2',component:()=>import('@/components/canvas/complex/c_path.vue')},
         ]
     },
 ]

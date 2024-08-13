@@ -6,13 +6,13 @@
                     <span><b>Global View</b></span>
                 </div>
                 <div class="col-3">
-                    <selectMini :label="select1.label"
+                    <selectMini @choose="(c)=>{choose1=c}" :label="select1.label"
                     :selects="select1.selectOption"
                     :options="select1.options"
                     ></selectMini>
                 </div>
                 <div class="offset-1 col-3">
-                    <button type="button" class="mx-1 btn btn-light btn-sm text-secondary">
+                    <button @click="to_c_path" type="button" class="mx-1 btn btn-light btn-sm text-secondary">
                         <span><i class="bi bi-search"></i></span>
                     </button>
                     <button type="button" class="mx-1 btn btn-light btn-sm text-secondary">
@@ -23,7 +23,7 @@
                     </button>
                 </div>
                 <div class="col-3">
-                    <selectMini :label="select2.label"
+                    <selectMini @choose="(c)=>{choose2=c}" :label="select2.label"
                     :selects="select2.selectOption"
                     :options="select2.options"
                     ></selectMini>
@@ -50,9 +50,10 @@
 <script setup>
     import bar from '../canvas/bar.vue';
     import pathh from '../canvas/path.vue';
-
+    import { useRouter } from 'vue-router';
     import selectMini from '../select/selectMini.vue'
-    import {reactive} from 'vue'
+    import {reactive,ref} from 'vue'
+    
     const select1= reactive({
         label: 'Projection:',
         selectOption: 'Original',
@@ -73,6 +74,14 @@
             'Correctness',
         ],
     })
+    const choose1=ref('')
+    const choose2=ref('')
+    const router =useRouter()
+    function to_c_path(){
+        router.push({
+            path:`/complex/path/${choose1.value}/${choose2.value}`,
+        })
+    }
 </script>
 
 <style>

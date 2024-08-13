@@ -19,6 +19,16 @@ export function getPieData(){
     return client.get('/data/pie')
 }
 
+export function getComplexPathData(c1,c2){
+    return client.get('/complex/path',{
+        params: {
+            choose1: c1,
+            choose2: c2,
+        }
+    })
+}
+
+
 // export function getScatterData(){
 //     return client.get('/data/scatter')
 // }

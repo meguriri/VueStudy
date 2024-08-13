@@ -1,5 +1,4 @@
 import * as d3 from 'd3'
-import { h } from 'vue'
 
 const width=400
 const height=400
