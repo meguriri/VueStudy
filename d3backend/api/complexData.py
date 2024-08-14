@@ -47,16 +47,28 @@ def getPathData():
       ],
     },
   ]
-  # res = {}
-  # if choose1 == 'Original':
-  #   res = data[0]
-  # elif choose1 == 'Relation':
-  #   res = data[1]
-  # else:
-  #   res = data[2]
 
   return {
     "msg": 200,
     "data": data,
-    #"data": res,
+  }
+
+@complex.route("/stackBar",methods=['GET'])
+def getStackBarData():
+  data = {
+    'Xbar':['Mon','Tue','Wed','Thu','Fri','Sat','Sun'],
+    'name':['Aa','Bb','Cc','Dd','Ee'],
+    'data':[
+      {"date":'Mon','Aa':20,'Bb':30,'Cc':10,"Dd":25,"Ee":40},
+      {"date":'Tue','Aa':10,'Bb':5,'Cc':20,"Dd":30,"Ee":30},
+      {"date":'Wed','Aa':30,'Bb':40,'Cc':30,"Dd":40,"Ee":30},
+      {"date":'Thu','Aa':40,'Bb':40,'Cc':40,"Dd":50,"Ee":20},
+      {"date":'Fri','Aa':15,'Bb':10,'Cc':50,"Dd":20,"Ee":15},
+      {"date":'Sat','Aa':50,'Bb':30,'Cc':25,"Dd":15,"Ee":20},
+      {"date":'Sun','Aa':10,'Bb':40,'Cc':30,"Dd":40,"Ee":15},
+    ],
+  }
+  return {
+    'msg':200,
+    'data':data,
   }

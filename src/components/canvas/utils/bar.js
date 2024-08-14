@@ -1,7 +1,7 @@
 import * as d3 from 'd3'
 
-let width 
-let height
+const width = 400 
+const height = 400 
 let innerWidth
 let innerHeight
 const margin = {top:60,right:30,bottom:60,left:50}

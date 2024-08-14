@@ -19,6 +19,7 @@ const routes = [
         component:()=>import('@/components/chart.vue'),
         children:[
             {path:'path/:choose1/:choose2',component:()=>import('@/components/canvas/complex/c_path.vue')},
+            {path:'bar/stack',component:()=>import('@/components/canvas/complex/stackBar.vue')},
         ]
     },
 ]

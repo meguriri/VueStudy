@@ -28,6 +28,9 @@ export function getComplexPathData(c1,c2){
     })
 }
 
+export function getStackBarData(){
+    return client.get('/complex/stackBar')
+}
 
 // export function getScatterData(){
 //     return client.get('/data/scatter')

@@ -50,6 +50,23 @@ function addTitle(title){
   .attr('transform',`translate(${innerWidth/2} ,0)`)
 }
 
+function drawPath(data){
+  let linePath = d3.line()
+  .x(d=>Xscale(xValue(d)))
+  .y(d=>Yscale(yValue(d)))
+  .curve(d3.curveCardinal)//折线的曲线类型
+
+  let path = maingroup.append('g')
+  .attr('class','path')
+  .append('path')
+  .attr('d',linePath(data.data))
+  .attr('fill','none')
+  .attr('stroke-width',3)
+  .attr('stroke',Cscale(data.name))
+
+  return path
+}
+
 export function pathInit(svg,data){
   svg.attr('height',height)
   .attr('width',width)
@@ -79,7 +96,9 @@ export function pathInit(svg,data){
   .attr('transform',`translate(1,${innerHeight})`)
   maingroup.append('g').attr('id','yAxis').call(yAxis)
 
-
+  data.forEach((d)=>{
+    path.push(drawPath(d))
+  })
 
   
   addToken(svg,data.map(d=>d.name))

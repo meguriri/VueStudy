@@ -15,7 +15,7 @@
                     <button @click="to_c_path" type="button" class="mx-1 btn btn-light btn-sm text-secondary">
                         <span><i class="bi bi-search"></i></span>
                     </button>
-                    <button type="button" class="mx-1 btn btn-light btn-sm text-secondary">
+                    <button @click="to_stack" type="button" class="mx-1 btn btn-light btn-sm text-secondary">
                         <span><i class="bi bi-pencil-square"></i></span>
                     </button>
                     <button type="button" class="mx-1 btn btn-light btn-sm text-secondary">
@@ -81,6 +81,10 @@
         router.push({
             path:`/complex/path/${choose1.value}/${choose2.value}`,
         })
+    }
+
+    function to_stack(){
+        router.push('/complex/bar/stack')
     }
 </script>
 
