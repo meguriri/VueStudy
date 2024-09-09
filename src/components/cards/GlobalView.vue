@@ -18,7 +18,7 @@
                     <button @click="to_stack" type="button" class="mx-1 btn btn-light btn-sm text-secondary">
                         <span><i class="bi bi-pencil-square"></i></span>
                     </button>
-                    <button type="button" class="mx-1 btn btn-light btn-sm text-secondary">
+                    <button @click="to_test" type="button" class="mx-1 btn btn-light btn-sm text-secondary">
                         <span><i class="bi bi-plus-lg"></i></span>
                     </button>
                 </div>
@@ -85,6 +85,9 @@
 
     function to_stack(){
         router.push('/complex/bar/stack')
+    }
+    function to_test(){
+        router.push('/test')
     }
 </script>
 

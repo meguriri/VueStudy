@@ -22,6 +22,10 @@ const routes = [
             {path:'bar/stack',component:()=>import('@/components/canvas/complex/stackBar.vue')},
         ]
     },
+    {
+        path:'/test',
+        component:()=>import('@/components/test.vue'),
+    },
 ]
 
 const router =createRouter({

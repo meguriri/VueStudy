@@ -32,6 +32,10 @@ export function getStackBarData(){
     return client.get('/complex/stackBar')
 }
 
+export function getTestData(){
+    return client.get('/test')
+}
+
 // export function getScatterData(){
 //     return client.get('/data/scatter')
 // }

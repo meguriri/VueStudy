@@ -1,0 +1,1 @@
+import{o as e,c as t,a as s,e as a,i as o,R as c}from"./index-B8cqB3uZ.js";const r={class:"row",style:{"text-align":"center"}},n={class:"col-8 offset-2"},f={__name:"chart",setup(_){return(i,l)=>(e(),t("div",r,[s("div",n,[a(o(c))])]))}};export{f as default};
